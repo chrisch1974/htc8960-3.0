@@ -1,4 +1,4 @@
-/* Copyright (c) 2009-2011, Code Aurora Forum. All rights reserved.
+/* Copyright (c) 2009-2012, Code Aurora Forum. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -356,57 +356,6 @@
 #define HW_REV_ID_REG 		0x2054
 #define HW_REV_ID_MASK 		0xf0000000
 #define HW_REV_ID_SHIFT		0x1c
-
-/* MD Registers */
-#define MD4(m_lsb, m, n_lsb, n) \
-		(BVAL((m_lsb+3), m_lsb, m) | BVAL((n_lsb+3), n_lsb, ~(n)))
-#define MD8(m_lsb, m, n_lsb, n) \
-		(BVAL((m_lsb+7), m_lsb, m) | BVAL((n_lsb+7), n_lsb, ~(n)))
-#define MD16(m, n) (BVAL(31, 16, m) | BVAL(15, 0, ~(n)))
-
-/* NS Registers */
-#define NS(n_msb, n_lsb, n, m, mde_lsb, d_msb, d_lsb, d, s_msb, s_lsb, s) \
-		(BVAL(n_msb, n_lsb, ~(n-m)) \
-		| (BVAL((mde_lsb+1), mde_lsb, MN_MODE_DUAL_EDGE) * !!(n)) \
-		| BVAL(d_msb, d_lsb, (d-1)) | BVAL(s_msb, s_lsb, s))
-
-#define NS_MM(n_msb, n_lsb, n, m, d_msb, d_lsb, d, s_msb, s_lsb, s) \
-		(BVAL(n_msb, n_lsb, ~(n-m)) | BVAL(d_msb, d_lsb, (d-1)) \
-		| BVAL(s_msb, s_lsb, s))
-
-#define NS_DIVSRC(d_msb , d_lsb, d, s_msb, s_lsb, s) \
-		(BVAL(d_msb, d_lsb, (d-1)) | BVAL(s_msb, s_lsb, s))
-
-#define NS_DIV(d_msb , d_lsb, d) \
-		BVAL(d_msb, d_lsb, (d-1))
-
-#define NS_SRC_SEL(s_msb, s_lsb, s) \
-		BVAL(s_msb, s_lsb, s)
-
-#define NS_MND_BANKED4(n0_lsb, n1_lsb, n, m, s0_lsb, s1_lsb, s) \
-		 (BVAL((n0_lsb+3), n0_lsb, ~(n-m)) \
-		| BVAL((n1_lsb+3), n1_lsb, ~(n-m)) \
-		| BVAL((s0_lsb+2), s0_lsb, s) \
-		| BVAL((s1_lsb+2), s1_lsb, s))
-
-#define NS_MND_BANKED8(n0_lsb, n1_lsb, n, m, s0_lsb, s1_lsb, s) \
-		 (BVAL((n0_lsb+7), n0_lsb, ~(n-m)) \
-		| BVAL((n1_lsb+7), n1_lsb, ~(n-m)) \
-		| BVAL((s0_lsb+2), s0_lsb, s) \
-		| BVAL((s1_lsb+2), s1_lsb, s))
-
-#define NS_DIVSRC_BANKED(d0_msb, d0_lsb, d1_msb, d1_lsb, d, \
-	s0_msb, s0_lsb, s1_msb, s1_lsb, s) \
-		 (BVAL(d0_msb, d0_lsb, (d-1)) | BVAL(d1_msb, d1_lsb, (d-1)) \
-		| BVAL(s0_msb, s0_lsb, s) \
-		| BVAL(s1_msb, s1_lsb, s))
-
-/* CC Registers */
-#define CC(mde_lsb, n) (BVAL((mde_lsb+1), mde_lsb, MN_MODE_DUAL_EDGE) * !!(n))
-#define CC_BANKED(mde0_lsb, mde1_lsb, n) \
-		((BVAL((mde0_lsb+1), mde0_lsb, MN_MODE_DUAL_EDGE) \
-		| BVAL((mde1_lsb+1), mde1_lsb, MN_MODE_DUAL_EDGE)) \
-		* !!(n))
 
 struct pll_rate {
 	const uint32_t	l_val;
@@ -2826,14 +2775,14 @@ static int pix_rdi_clk_set_rate(struct clk *c, unsigned long rate)
 	struct pix_rdi_clk *clk = to_pix_rdi_clk(c);
 	struct clk **mux_map = pix_rdi_mux_map;
 
-/*
+	/*
 	 * These clocks select three inputs via two muxes. One mux selects
 	 * between csi0 and csi1 and the second mux selects between that mux's
 	 * output and csi2. The source and destination selections for each
 	 * mux must be clocking for the switch to succeed so just turn on
 	 * all three sources because it's easier than figuring out what source
 	 * needs to be on at what time.
- */
+ 	*/
 	for (i = 0; mux_map[i]; i++) {
 		ret = clk_enable(mux_map[i]);
 		if (ret)
@@ -2894,7 +2843,7 @@ static int pix_rdi_clk_enable(struct clk *c)
 	clk->enabled = true;
 
 	return 0;
-	}
+}
 
 static void pix_rdi_clk_disable(struct clk *c)
 {
