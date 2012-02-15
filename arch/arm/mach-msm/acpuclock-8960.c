@@ -226,10 +226,10 @@ static struct scalable scalable_8960[] = {
 			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8921_S3 },
-			.vreg[VREG_HFPLL_A] = { "hfpll", 2100000,
+			.vreg[VREG_HFPLL_A] = { "hfpll0_s8", 2100000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8921_S8 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll0_l23", 1800000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8921_L23 },
 		},
@@ -238,16 +238,16 @@ static struct scalable scalable_8960[] = {
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait1",     1300000 },
-			.vreg[VREG_MEM]  = { "krait0_mem", 1150000,
+			.vreg[VREG_MEM]  = { "krait1_mem", 1150000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_L24 },
-			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
+			.vreg[VREG_DIG]  = { "krait1_dig", 1150000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_S3 },
-			.vreg[VREG_HFPLL_A] = { "hfpll", 2100000,
+			.vreg[VREG_HFPLL_A] = { "hfpll1_s8", 2100000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_S8 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll1_l23", 1800000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_L23 },
 		},
@@ -255,10 +255,10 @@ static struct scalable scalable_8960[] = {
 			.hfpll_base   = MSM_HFPLL_BASE    + 0x400,
 			.aux_clk_sel  = MSM_APCS_GCC_BASE + 0x028,
 			.l2cpmr_iaddr = L2CPMR_IADDR,
-			.vreg[VREG_HFPLL_A] = { "hfpll", 2100000,
+			.vreg[VREG_HFPLL_A] = { "hfpll_l2_s8", 2100000,
 					     RPM_VREG_VOTER6,
 					     RPM_VREG_ID_PM8921_S8 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll_l2_l23", 1800000,
 					     RPM_VREG_VOTER6,
 					     RPM_VREG_ID_PM8921_L23 },
 		},
@@ -279,7 +279,7 @@ static struct scalable scalable_8064[] = {
 			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8921_S3 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll0", 1800000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8921_LVS7 },
 		},
@@ -288,13 +288,13 @@ static struct scalable scalable_8064[] = {
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait1",     1150000 },
-			.vreg[VREG_MEM]  = { "krait0_mem", 1150000,
+			.vreg[VREG_MEM]  = { "krait1_mem", 1150000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_L24 },
-			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
+			.vreg[VREG_DIG]  = { "krait1_dig", 1150000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_S3 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll1", 1800000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8921_LVS7 },
 		},
@@ -303,13 +303,13 @@ static struct scalable scalable_8064[] = {
 			.aux_clk_sel     = MSM_ACC2_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait2",     1150000 },
-			.vreg[VREG_MEM]  = { "krait0_mem", 1150000,
+			.vreg[VREG_MEM]  = { "krait2_mem", 1150000,
 					     RPM_VREG_VOTER4,
 					     RPM_VREG_ID_PM8921_L24 },
-			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
+			.vreg[VREG_DIG]  = { "krait2_dig", 1150000,
 					     RPM_VREG_VOTER4,
 					     RPM_VREG_ID_PM8921_S3 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll2", 1800000,
 					     RPM_VREG_VOTER4,
 					     RPM_VREG_ID_PM8921_LVS7 },
 		},
@@ -318,13 +318,13 @@ static struct scalable scalable_8064[] = {
 			.aux_clk_sel     = MSM_ACC3_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait3",     1150000 },
-			.vreg[VREG_MEM]  = { "krait0_mem", 1150000,
+			.vreg[VREG_MEM]  = { "krait3_mem", 1150000,
 					     RPM_VREG_VOTER5,
 					     RPM_VREG_ID_PM8921_L24 },
-			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
+			.vreg[VREG_DIG]  = { "krait3_dig", 1150000,
 					     RPM_VREG_VOTER5,
 					     RPM_VREG_ID_PM8921_S3 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll3", 1800000,
 					     RPM_VREG_VOTER5,
 					     RPM_VREG_ID_PM8921_LVS7 },
 		},
@@ -332,7 +332,7 @@ static struct scalable scalable_8064[] = {
 			.hfpll_base   = MSM_HFPLL_BASE    + 0x300,
 			.aux_clk_sel  = MSM_APCS_GCC_BASE + 0x028,
 			.l2cpmr_iaddr = L2CPMR_IADDR,
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll_l2", 1800000,
 					     RPM_VREG_VOTER6,
 					     RPM_VREG_ID_PM8921_LVS7 },
 		},
@@ -350,7 +350,7 @@ static struct scalable scalable_8930[] = {
 			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8038_S1 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll0", 1800000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8038_L23 },
 		},
@@ -359,13 +359,13 @@ static struct scalable scalable_8930[] = {
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait1",     1300000 },
-			.vreg[VREG_MEM]  = { "krait0_mem", 1150000,
+			.vreg[VREG_MEM]  = { "krait1_mem", 1150000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8038_L24 },
-			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
+			.vreg[VREG_DIG]  = { "krait1_dig", 1150000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8038_S1 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll1", 1800000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8038_L23 },
 		},
@@ -373,7 +373,7 @@ static struct scalable scalable_8930[] = {
 			.hfpll_base   = MSM_HFPLL_BASE    + 0x400,
 			.aux_clk_sel  = MSM_APCS_GCC_BASE + 0x028,
 			.l2cpmr_iaddr = L2CPMR_IADDR,
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll_l2", 1800000,
 					     RPM_VREG_VOTER6,
 					     RPM_VREG_ID_PM8038_L23 },
 		},
@@ -392,7 +392,7 @@ static struct scalable scalable_8627[] = {
 			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8038_S1 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll0", 1800000,
 					     RPM_VREG_VOTER1,
 					     RPM_VREG_ID_PM8038_L23 },
 		},
@@ -401,13 +401,13 @@ static struct scalable scalable_8627[] = {
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait1",     1300000 },
-			.vreg[VREG_MEM]  = { "krait0_mem", 1150000,
+			.vreg[VREG_MEM]  = { "krait1_mem", 1150000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8038_L24 },
-			.vreg[VREG_DIG]  = { "krait0_dig", 1150000,
+			.vreg[VREG_DIG]  = { "krait1_dig", 1150000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8038_S1 },
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll1", 1800000,
 					     RPM_VREG_VOTER2,
 					     RPM_VREG_ID_PM8038_L23 },
 		},
@@ -415,7 +415,7 @@ static struct scalable scalable_8627[] = {
 			.hfpll_base   = MSM_HFPLL_BASE    + 0x400,
 			.aux_clk_sel  = MSM_APCS_GCC_BASE + 0x028,
 			.l2cpmr_iaddr = L2CPMR_IADDR,
-			.vreg[VREG_HFPLL_B] = { "hfpll", 1800000,
+			.vreg[VREG_HFPLL_B] = { "hfpll_l2", 1800000,
 					     RPM_VREG_VOTER6,
 					     RPM_VREG_ID_PM8038_L23 },
 		},
@@ -1000,8 +1000,8 @@ static int increase_vdd(int cpu, unsigned int vdd_core, unsigned int vdd_mem,
 				sc->vreg[VREG_MEM].rpm_vreg_voter, vdd_mem,
 				sc->vreg[VREG_MEM].max_vdd, 0);
 		if (rc) {
-			pr_err("%s: vdd_mem (cpu%d) increase failed (%d)\n",
-				__func__, cpu, rc);
+			pr_err("%s increase failed (%d)\n",
+				sc->vreg[VREG_MEM].name, rc);
 			return rc;
 		}
 		 sc->vreg[VREG_MEM].cur_vdd = vdd_mem;
@@ -1013,8 +1013,8 @@ static int increase_vdd(int cpu, unsigned int vdd_core, unsigned int vdd_mem,
 				sc->vreg[VREG_DIG].rpm_vreg_voter, vdd_dig,
 				sc->vreg[VREG_DIG].max_vdd, 0);
 		if (rc) {
-			pr_err("%s: vdd_dig (cpu%d) increase failed (%d)\n",
-				__func__, cpu, rc);
+			pr_err("%s increase failed (%d)\n",
+				sc->vreg[VREG_DIG].name, rc);
 			return rc;
 		}
 		sc->vreg[VREG_DIG].cur_vdd = vdd_dig;
@@ -1031,8 +1031,8 @@ static int increase_vdd(int cpu, unsigned int vdd_core, unsigned int vdd_mem,
 		rc = regulator_set_voltage(sc->vreg[VREG_CORE].reg, vdd_core,
 					   sc->vreg[VREG_CORE].max_vdd);
 		if (rc) {
-			pr_err("%s: vdd_core (cpu%d) increase failed (%d)\n",
-				__func__, cpu, rc);
+			pr_err("%s increase failed (%d)\n",
+				sc->vreg[VREG_CORE].name, rc);
 			return rc;
 		}
 		sc->vreg[VREG_CORE].cur_vdd = vdd_core;
@@ -1058,8 +1058,8 @@ static void decrease_vdd(int cpu, unsigned int vdd_core, unsigned int vdd_mem,
 		ret = regulator_set_voltage(sc->vreg[VREG_CORE].reg, vdd_core,
 					    sc->vreg[VREG_CORE].max_vdd);
 		if (ret) {
-			pr_err("%s: vdd_core (cpu%d) decrease failed (%d)\n",
-			       __func__, cpu, ret);
+			pr_err("%s decrease failed (%d)\n",
+			       sc->vreg[VREG_CORE].name, ret);
 			return;
 		}
 		sc->vreg[VREG_CORE].cur_vdd = vdd_core;
@@ -1071,8 +1071,8 @@ static void decrease_vdd(int cpu, unsigned int vdd_core, unsigned int vdd_mem,
 				sc->vreg[VREG_DIG].rpm_vreg_voter, vdd_dig,
 				sc->vreg[VREG_DIG].max_vdd, 0);
 		if (ret) {
-			pr_err("%s: vdd_dig (cpu%d) decrease failed (%d)\n",
-				__func__, cpu, ret);
+			pr_err("%s decrease failed (%d)\n",
+				sc->vreg[VREG_DIG].name, ret);
 			return;
 		}
 		sc->vreg[VREG_DIG].cur_vdd = vdd_dig;
@@ -1087,8 +1087,8 @@ static void decrease_vdd(int cpu, unsigned int vdd_core, unsigned int vdd_mem,
 				sc->vreg[VREG_MEM].rpm_vreg_voter, vdd_mem,
 				sc->vreg[VREG_MEM].max_vdd, 0);
 		if (ret) {
-			pr_err("%s: vdd_mem (cpu%d) decrease failed (%d)\n",
-				__func__, cpu, ret);
+			pr_err("%s decrease failed (%d)\n",
+				sc->vreg[VREG_MEM].name, ret);
 			return;
 		}
 		 sc->vreg[VREG_MEM].cur_vdd = vdd_mem;
