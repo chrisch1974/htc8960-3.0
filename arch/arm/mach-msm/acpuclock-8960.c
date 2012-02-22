@@ -245,7 +245,6 @@ static unsigned int hfpll_vdd_dig_tbl_8930[] = {
 static struct scalable scalable_8960[] = {
 	[CPU0] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x200,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8960,
 			.aux_clk_sel     = MSM_ACC0_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait0",     1300000 },
@@ -264,7 +263,6 @@ static struct scalable scalable_8960[] = {
 		},
 	[CPU1] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x300,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8960,
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait1",     1300000 },
@@ -301,7 +299,6 @@ static DEFINE_SPINLOCK(l2_lock);
 static struct scalable scalable_8064[] = {
 	[CPU0] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x200,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8064,
 			.aux_clk_sel     = MSM_ACC0_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait0",     1300000 },
@@ -317,7 +314,6 @@ static struct scalable scalable_8064[] = {
 		},
 	[CPU1] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x240,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8064,
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait1",     1300000 },
@@ -333,7 +329,6 @@ static struct scalable scalable_8064[] = {
 		},
 	[CPU2] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x280,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8064,
 			.aux_clk_sel     = MSM_ACC2_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait2",     1300000 },
@@ -349,7 +344,6 @@ static struct scalable scalable_8064[] = {
 		},
 	[CPU3] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x2C0,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8064,
 			.aux_clk_sel     = MSM_ACC3_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait3",     1300000 },
@@ -377,7 +371,6 @@ static struct scalable scalable_8064[] = {
 static struct scalable scalable_8930[] = {
 	[CPU0] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x200,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8064,
 			.aux_clk_sel     = MSM_ACC0_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait0",     1300000 },
@@ -394,7 +387,6 @@ static struct scalable scalable_8930[] = {
 		},
 	[CPU1] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x300,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8064,
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait1",     1300000 },
@@ -424,7 +416,6 @@ static struct scalable scalable_8930[] = {
 static struct scalable scalable_8627[] = {
 	[CPU0] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x200,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8064,
 			.aux_clk_sel     = MSM_ACC0_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait0",     1300000 },
@@ -441,7 +432,6 @@ static struct scalable scalable_8627[] = {
 		},
 	[CPU1] = {
 			.hfpll_base      = MSM_HFPLL_BASE + 0x300,
-			.hfpll_vdd_tbl   = hfpll_vdd_tbl_8064,
 			.aux_clk_sel     = MSM_ACC1_BASE  + 0x014,
 			.l2cpmr_iaddr    = L2CPUCPMR_IADDR,
 			.vreg[VREG_CORE] = { "krait1",     1300000 },
@@ -458,7 +448,6 @@ static struct scalable scalable_8627[] = {
 		},
 	[L2] = {
 			.hfpll_base   = MSM_HFPLL_BASE    + 0x400,
-			.hfpll_vdd_tbl = hfpll_vdd_dig_tbl_8930,
 			.aux_clk_sel  = MSM_APCS_GCC_BASE + 0x028,
 			.l2cpmr_iaddr = L2CPMR_IADDR,
 			.vreg[VREG_HFPLL_B] = { "hfpll_l2", 1800000,
@@ -1162,18 +1151,9 @@ static unsigned int calculate_vdd_dig(struct acpu_level *tgt)
 	return max(tgt->l2_level->vdd_dig, pll_vdd_dig);
 }
 
-static unsigned int calculate_vdd_core(int cpu, struct acpu_level *tgt)
+static unsigned int calculate_vdd_core(struct acpu_level *tgt)
 {
-	unsigned int pll_vdd_core;
-
-	if (tgt->speed.src != HFPLL)
-		pll_vdd_core = scalable[cpu].hfpll_vdd_tbl[HFPLL_VDD_NONE];
-	else if (tgt->speed.pll_l_val > HFPLL_LOW_VDD_PLL_L_MAX)
-		pll_vdd_core = scalable[cpu].hfpll_vdd_tbl[HFPLL_VDD_NOM];
-	else
-		pll_vdd_core = scalable[cpu].hfpll_vdd_tbl[HFPLL_VDD_LOW];
-
-	return max(tgt->vdd_core, pll_vdd_core);
+	return tgt->vdd_core;
 }
 
 /* Set the CPU's clock rate and adjust the L2 rate, if appropriate. */
@@ -1220,7 +1200,7 @@ static int acpuclk_8960_set_rate(int cpu, unsigned long rate,
 	/* Calculate voltage requirements for the current CPU. */
 	vdd_mem  = calculate_vdd_mem(tgt);
 	vdd_dig  = calculate_vdd_dig(tgt);
-	vdd_core = calculate_vdd_core(cpu, tgt);
+	vdd_core = calculate_vdd_core(tgt);
 
 	/* Increase VDD levels if needed. */
 	if (reason == SETRATE_CPUFREQ || reason == SETRATE_HOTPLUG) {
