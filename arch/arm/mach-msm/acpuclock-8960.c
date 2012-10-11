@@ -428,7 +428,6 @@ static struct scalable *scalable;
 static struct l2_level *l2_freq_tbl;
 static struct acpu_level *acpu_freq_tbl;
 static int l2_freq_tbl_size;
-static unsigned int max_vdd = 0;
 
 /* Instantaneous bandwidth requests in MB/s. */
 #define BW_MBPS(_bw) \
@@ -1268,8 +1267,9 @@ static void __init regulator_init(void)
 			BUG();
 		}
 
-		ret = regulator_set_voltage(sc->vreg[VREG_CORE].reg, max_vdd, max_vdd);
-
+		ret = regulator_set_voltage(sc->vreg[VREG_CORE].reg,
+					    sc->vreg[VREG_CORE].max_vdd,
+					    sc->vreg[VREG_CORE].max_vdd);
 		if (ret)
 			pr_err("regulator_set_voltage(%s) failed"
 			       " (%d)\n", sc->vreg[VREG_CORE].name, ret);
@@ -1527,10 +1527,8 @@ static struct acpu_level * __init select_freq_plan(void)
 	} else {
 		BUG();
 	}
-	if (krait_needs_vmin()) {
-		pr_info("Applying min 1.15v fix for Krait Errata 26\n");
+	if (krait_needs_vmin())
 		kraitv2_apply_vmin(acpu_freq_tbl);
-	}
 
 	/* Adjust frequency table according to custom acpu_max_freq */
 	if (acpu_max_freq) {
@@ -1553,7 +1551,6 @@ static struct acpu_level * __init select_freq_plan(void)
 			max_acpu_level = l;
 	BUG_ON(!max_acpu_level);
 	pr_info("Max ACPU freq: %u KHz\n", max_acpu_level->speed.khz);
-	max_vdd = max_acpu_level->vdd_core;
 
 	return max_acpu_level;
 }
