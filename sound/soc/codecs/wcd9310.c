@@ -1750,7 +1750,7 @@ static int tabla_codec_enable_ldo_h(struct snd_soc_dapm_widget *w,
 }
 
 
-static void tabla_enable_rx_bias(struct snd_soc_codec *codec, u32  enable)
+void tabla_enable_rx_bias(struct snd_soc_codec *codec, u32  enable)
 {
 	struct tabla_priv *tabla = snd_soc_codec_get_drvdata(codec);
 

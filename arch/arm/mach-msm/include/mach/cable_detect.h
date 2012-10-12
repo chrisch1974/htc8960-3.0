@@ -38,6 +38,7 @@ enum dpdn_path_type {
 	PATH_MHL,
 	PATH_USB_AUD,
 	PATH_UART,
+	PATH_POWER_SAVE,
 };
 
 #if 0
@@ -83,6 +84,7 @@ struct cable_detect_platform_data {
 	bool dock_detect;
 	int dock_pin_gpio;
 #endif
+	int fireball_disable_ldo3;
 };
 
 /* -----------------------------------------------------------------------------
