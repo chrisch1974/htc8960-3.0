@@ -1254,6 +1254,7 @@ static struct branch_clk vcap_p_clk = {
 		.md_reg = GPn_MD_REG(n), \
 		.root_en_mask = BIT(11), \
 		.ns_mask = (BM(23, 16) | BM(6, 0)), \
+		.mnd_en_mask = BIT(8), \
 		.set_rate = set_rate_mnd, \
 		.freq_tbl = clk_tbl_gp, \
 		.current_freq = &rcg_dummy_freq, \
@@ -1270,7 +1271,6 @@ static struct branch_clk vcap_p_clk = {
 		.src_clk = &s##_clk.c, \
 		.md_val = MD8(16, m, 0, n), \
 		.ns_val = NS(23, 16, n, m, 5, 4, 3, d, 2, 0, s##_to_bb_mux), \
-		.mnd_en_mask = BIT(8) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_gp[] = {
 	F_GP(        0, gnd,  1, 0, 0),
@@ -1305,6 +1305,7 @@ static CLK_GP(gp2, 2, CLK_HALT_SFPB_MISC_STATE_REG, 5);
 		.md_reg = GSBIn_UART_APPS_MD_REG(n), \
 		.root_en_mask = BIT(11), \
 		.ns_mask = (BM(31, 16) | BM(6, 0)), \
+		.mnd_en_mask = BIT(8), \
 		.set_rate = set_rate_mnd, \
 		.freq_tbl = clk_tbl_gsbi_uart, \
 		.current_freq = &rcg_dummy_freq, \
@@ -1321,7 +1322,6 @@ static CLK_GP(gp2, 2, CLK_HALT_SFPB_MISC_STATE_REG, 5);
 		.src_clk = &s##_clk.c, \
 		.md_val = MD16(m, n), \
 		.ns_val = NS(31, 16, n, m, 5, 4, 3, d, 2, 0, s##_to_bb_mux), \
-		.mnd_en_mask = BIT(8) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_gsbi_uart[] = {
 	F_GSBI_UART(       0, gnd,  1,  0,   0),
@@ -1369,6 +1369,7 @@ static CLK_GSBI_UART(gsbi12_uart, 12, CLK_HALT_CFPB_STATEC_REG, 13);
 		.md_reg = GSBIn_QUP_APPS_MD_REG(n), \
 		.root_en_mask = BIT(11), \
 		.ns_mask = (BM(23, 16) | BM(6, 0)), \
+		.mnd_en_mask = BIT(8), \
 		.set_rate = set_rate_mnd, \
 		.freq_tbl = clk_tbl_gsbi_qup, \
 		.current_freq = &rcg_dummy_freq, \
@@ -1385,7 +1386,6 @@ static CLK_GSBI_UART(gsbi12_uart, 12, CLK_HALT_CFPB_STATEC_REG, 13);
 		.src_clk = &s##_clk.c, \
 		.md_val = MD8(16, m, 0, n), \
 		.ns_val = NS(23, 16, n, m, 5, 4, 3, d, 2, 0, s##_to_bb_mux), \
-		.mnd_en_mask = BIT(8) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_gsbi_qup[] = {
 	F_GSBI_QUP(       0, gnd,  1, 0,  0),
@@ -1508,6 +1508,7 @@ static struct rcg_clk prng_clk = {
 		.md_reg = SDCn_APPS_CLK_MD_REG(n), \
 		.root_en_mask = BIT(11), \
 		.ns_mask = (BM(23, 16) | BM(6, 0)), \
+		.mnd_en_mask = BIT(8), \
 		.set_rate = set_rate_mnd, \
 		.freq_tbl = clk_tbl_sdc, \
 		.current_freq = &rcg_dummy_freq, \
@@ -1524,7 +1525,6 @@ static struct rcg_clk prng_clk = {
 		.src_clk = &s##_clk.c, \
 		.md_val = MD8(16, m, 0, n), \
 		.ns_val = NS(23, 16, n, m, 5, 4, 3, d, 2, 0, s##_to_bb_mux), \
-		.mnd_en_mask = BIT(8) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_sdc[] = {
 	F_SDC(        0, gnd,   1, 0,   0),
@@ -1555,7 +1555,6 @@ static CLK_SDC(sdc5_clk, 5, 2,  33000000,  67000000);
 		.src_clk = &s##_clk.c, \
 		.md_val = MD16(m, n), \
 		.ns_val = NS(31, 16, n, m, 5, 4, 3, d, 2, 0, s##_to_bb_mux), \
-		.mnd_en_mask = BIT(8) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_tsif_ref[] = {
 	F_TSIF_REF(     0, gnd,  1, 0,   0),
@@ -1574,6 +1573,7 @@ static struct rcg_clk tsif_ref_clk = {
 	.md_reg = TSIF_REF_CLK_MD_REG,
 	.root_en_mask = BIT(11),
 	.ns_mask = (BM(31, 16) | BM(6, 0)),
+	.mnd_en_mask = BIT(8),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_tsif_ref,
 	.current_freq = &rcg_dummy_freq,
@@ -1631,6 +1631,7 @@ static struct rcg_clk tssc_clk = {
 	.md_reg = USB_HS##n##_XCVR_FS_CLK_MD_REG, \
 	.root_en_mask = BIT(11), \
 	.ns_mask = (BM(23, 16) | BM(6, 0)), \
+	.mnd_en_mask = BIT(8), \
 	.set_rate = set_rate_mnd, \
 	.freq_tbl = clk_tbl_usb, \
 	.current_freq = &rcg_dummy_freq, \
@@ -1648,7 +1649,6 @@ static struct rcg_clk tssc_clk = {
 		.src_clk = &s##_clk.c, \
 		.md_val = MD8(16, m, 0, n), \
 		.ns_val = NS(23, 16, n, m, 5, 4, 3, d, 2, 0, s##_to_bb_mux), \
-		.mnd_en_mask = BIT(8) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_usb[] = {
 	F_USB(       0, gnd,  1, 0,  0),
@@ -1677,6 +1677,7 @@ static struct rcg_clk usb_hsic_xcvr_fs_clk = {
 	.md_reg = USB_HSIC_XCVR_FS_CLK_MD_REG,
 	.root_en_mask = BIT(11),
 	.ns_mask = (BM(23, 16) | BM(6, 0)),
+	.mnd_en_mask = BIT(8),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_usb_hsic,
 	.current_freq = &rcg_dummy_freq,
@@ -1797,6 +1798,7 @@ static struct branch_clk usb_phy0_clk = {
 		.md_reg = USB_FSn_XCVR_FS_CLK_MD_REG(n), \
 		.root_en_mask = BIT(11), \
 		.ns_mask = (BM(23, 16) | BM(6, 0)), \
+		.mnd_en_mask = BIT(8), \
 		.set_rate = set_rate_mnd, \
 		.freq_tbl = clk_tbl_usb, \
 		.current_freq = &rcg_dummy_freq, \
@@ -2532,6 +2534,7 @@ static struct branch_clk amp_clk = {
 		.md_reg = CAMCLK##n##_MD_REG, \
 		.root_en_mask = BIT(2), \
 		.ns_mask = BM(31, 24) | BM(15, 14) | BM(2, 0), \
+		.mnd_en_mask = BIT(5), \
 		.ctl_mask = BM(7, 6), \
 		.set_rate = set_rate_mnd_8, \
 		.freq_tbl = clk_tbl_cam, \
@@ -2550,7 +2553,6 @@ static struct branch_clk amp_clk = {
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MM(31, 24, n, m, 15, 14, d, 2, 0, s##_to_mm_mux), \
 		.ctl_val = CC(6, n), \
-		.mnd_en_mask = BIT(5) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_cam[] = {
 	F_CAM(        0, gnd,  1, 0,  0),
@@ -2579,7 +2581,6 @@ static CLK_CAM(cam2_clk, 2, 31);
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MM(31, 24, n, m, 15, 14, d, 2, 0, s##_to_mm_mux), \
 		.ctl_val = CC(6, n), \
-		.mnd_en_mask = BIT(5) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_csi[] = {
 	F_CSI(        0, gnd,  1, 0, 0),
@@ -2598,6 +2599,7 @@ static struct rcg_clk csi0_src_clk = {
 	.md_reg	= CSI0_MD_REG,
 	.root_en_mask = BIT(2),
 	.ns_mask = BM(31, 24) | BM(15, 14) | BM(2, 0),
+	.mnd_en_mask = BIT(5),
 	.ctl_mask = BM(7, 6),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_csi,
@@ -2653,6 +2655,7 @@ static struct rcg_clk csi1_src_clk = {
 	.md_reg	= CSI1_MD_REG,
 	.root_en_mask = BIT(2),
 	.ns_mask = BM(31, 24) | BM(15, 14) | BM(2, 0),
+	.mnd_en_mask = BIT(5),
 	.ctl_mask = BM(7, 6),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_csi,
@@ -2708,6 +2711,7 @@ static struct rcg_clk csi2_src_clk = {
 	.md_reg = CSI2_MD_REG,
 	.root_en_mask = BIT(2),
 	.ns_mask = BM(31, 24) | BM(15, 14) | BM(2, 0),
+	.mnd_en_mask = BIT(5),
 	.ctl_mask = BM(7, 6),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_csi,
@@ -3015,7 +3019,6 @@ static struct pix_rdi_clk csi_rdi2_clk = {
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MM(31, 24, n, m, 15, 14, d, 2, 0, s##_to_mm_mux), \
 		.ctl_val = CC(6, n), \
-		.mnd_en_mask = BIT(5) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_csi_phytimer[] = {
 	F_CSI_PHYTIMER(        0, gnd,  1, 0, 0),
@@ -3033,6 +3036,7 @@ static struct rcg_clk csiphy_timer_src_clk = {
 	.md_reg = CSIPHYTIMER_MD_REG,
 	.root_en_mask = BIT(2),
 	.ns_mask = (BM(31, 24) | BM(15, 14) | BM(2, 0)),
+	.mnd_en_mask = BIT(5),
 	.ctl_mask = BM(7, 6),
 	.set_rate = set_rate_mnd_8,
 	.freq_tbl = clk_tbl_csi_phytimer,
@@ -3204,7 +3208,6 @@ static struct rcg_clk dsi2_esc_clk = {
 		.md_val = MD4(4, m, 0, n), \
 		.ns_val = NS_MND_BANKED4(20, 16, n, m, 3, 0, s##_to_mm_mux), \
 		.ctl_val = CC_BANKED(9, 6, n), \
-		.mnd_en_mask = (BIT(8) | BIT(5)) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_gfx2d[] = {
 	F_GFX2D(        0, gnd,  0,  0),
@@ -3318,7 +3321,6 @@ static struct rcg_clk gfx2d1_clk = {
 		.md_val = MD4(4, m, 0, n), \
 		.ns_val = NS_MND_BANKED4(18, 14, n, m, 3, 0, s##_to_mm_mux), \
 		.ctl_val = CC_BANKED(9, 6, n), \
-		.mnd_en_mask = (BIT(8) | BIT(5)) * !!(n), \
 	}
 
 static struct clk_freq_tbl clk_tbl_gfx3d_8960[] = {
@@ -3420,7 +3422,6 @@ static struct rcg_clk gfx3d_clk = {
 		.md_val = MD4(4, m, 0, n), \
 		.ns_val = NS_MND_BANKED4(18, 14, n, m, 3, 0, s##_to_mm_mux), \
 		.ctl_val = CC_BANKED(9, 6, n), \
-		.mnd_en_mask = (BIT(8) | BIT(5)) * !!(n), \
 	}
 
 static struct clk_freq_tbl clk_tbl_vcap[] = {
@@ -3497,7 +3498,6 @@ static struct branch_clk vcap_npl_clk = {
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MM(23, 16, n, m, 15, 12, d, 2, 0, s##_to_mm_mux), \
 		.ctl_val = CC(6, n), \
-		.mnd_en_mask = BIT(5) * !!(n), \
 	}
 
 static struct clk_freq_tbl clk_tbl_ijpeg[] = {
@@ -3537,6 +3537,7 @@ static struct rcg_clk ijpeg_clk = {
 	.md_reg = IJPEG_MD_REG,
 	.root_en_mask = BIT(2),
 	.ns_mask = (BM(23, 16) | BM(15, 12) | BM(2, 0)),
+	.mnd_en_mask = BIT(5),
 	.ctl_mask = BM(7, 6),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_ijpeg,
@@ -3600,7 +3601,6 @@ static struct rcg_clk jpegd_clk = {
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MND_BANKED8(22, 14, n, m, 3, 0, s##_to_mm_mux), \
 		.ctl_val = CC_BANKED(9, 6, n), \
-		.mnd_en_mask = (BIT(8) | BIT(5)) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_mdp[] = {
 	F_MDP(        0, gnd,  0,  0),
@@ -3832,7 +3832,6 @@ static struct clk hdmi_pll_clk = {
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MM(23, 16, n, m, 15, 14, d, 2, 0, s##_to_mm_mux), \
 		.ctl_val = CC(6, n), \
-		.mnd_en_mask = BIT(5) * !!(n), \
 	}
 #define F_TV(f, s, p_r, d, m, n) \
 	{ \
@@ -3841,7 +3840,6 @@ static struct clk hdmi_pll_clk = {
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MM(23, 16, n, m, 15, 14, d, 2, 0, s##_to_mm_mux), \
 		.ctl_val = CC(6, n), \
-		.mnd_en_mask = BIT(5) * !!(n), \
 		.extra_freq_data = (void *)p_r, \
 	}
 /* Switching TV freqs requires PLL reconfiguration. */
@@ -3883,6 +3881,7 @@ static struct rcg_clk tv_src_clk = {
 	.md_reg = TV_MD_REG,
 	.root_en_mask = BIT(2),
 	.ns_mask = (BM(23, 16) | BM(15, 14) | BM(2, 0)),
+	.mnd_en_mask = BIT(5),
 	.ctl_mask = BM(7, 6),
 	.set_rate = set_rate_tv,
 	.freq_tbl = clk_tbl_tv,
@@ -4003,7 +4002,6 @@ static struct bank_masks bmnd_info_vcodec = {
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MND_BANKED8(11, 19, n, m, 0, 27, s##_to_mm_mux), \
 		.ctl_val = CC_BANKED(6, 11, n), \
-		.mnd_en_mask = (BIT(10) | BIT(5)) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_vcodec[] = {
 	F_VCODEC(        0, gnd,  0,  0),
@@ -4098,7 +4096,6 @@ static struct rcg_clk vpe_clk = {
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS_MM(23, 16, n, m, 11, 10, d, 2, 0, s##_to_mm_mux), \
 		.ctl_val = CC(6, n), \
-		.mnd_en_mask = BIT(5) * !!(n), \
 	}
 
 static struct clk_freq_tbl clk_tbl_vfe[] = {
@@ -4144,6 +4141,7 @@ static struct rcg_clk vfe_clk = {
 	.md_reg = VFE_MD_REG,
 	.root_en_mask = BIT(2),
 	.ns_mask = (BM(23, 16) | BM(11, 10) | BM(2, 0)),
+	.mnd_en_mask = BIT(5),
 	.ctl_mask = BM(7, 6),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_vfe,
@@ -4184,7 +4182,6 @@ static struct branch_clk csi_vfe_clk = {
 		.src_clk = &s##_clk.c, \
 		.md_val = MD8(8, m, 0, n), \
 		.ns_val = NS(31, 24, n, m, 5, 4, 3, d, 2, 0, s##_to_lpa_mux), \
-		.mnd_en_mask = BIT(8) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_aif_osr[] = {
 	F_AIF_OSR(       0, gnd,  1, 0,   0),
@@ -4217,6 +4214,7 @@ static struct clk_freq_tbl clk_tbl_aif_osr[] = {
 		.md_reg = md, \
 		.root_en_mask = BIT(9), \
 		.ns_mask = (BM(31, 24) | BM(6, 0)), \
+		.mnd_en_mask = BIT(8), \
 		.set_rate = set_rate_mnd, \
 		.freq_tbl = clk_tbl_aif_osr, \
 		.current_freq = &rcg_dummy_freq, \
@@ -4242,6 +4240,7 @@ static struct clk_freq_tbl clk_tbl_aif_osr[] = {
 		.md_reg = md, \
 		.root_en_mask = BIT(9), \
 		.ns_mask = (BM(31, 24) | BM(6, 0)), \
+		.mnd_en_mask = BIT(8), \
 		.set_rate = set_rate_mnd, \
 		.freq_tbl = clk_tbl_aif_osr, \
 		.current_freq = &rcg_dummy_freq, \
@@ -4321,7 +4320,6 @@ static CLK_AIF_BIT_DIV(spare_i2s_spkr_bit, LCC_SPARE_I2S_SPKR_NS_REG,
 		.src_clk = &s##_clk.c, \
 		.md_val = MD16(m, n), \
 		.ns_val = NS(31, 16, n, m, 5, 4, 3, d, 2, 0, s##_to_lpa_mux), \
-		.mnd_en_mask = BIT(8) * !!(n), \
 	}
 static struct clk_freq_tbl clk_tbl_pcm[] = {
 	{ .ns_val = BIT(10) /* external input */ },
@@ -4353,6 +4351,7 @@ static struct rcg_clk pcm_clk = {
 	.md_reg = LCC_PCM_MD_REG,
 	.root_en_mask = BIT(9),
 	.ns_mask = BM(31, 16) | BIT(10) | BM(6, 0),
+	.mnd_en_mask = BIT(8),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_pcm,
 	.current_freq = &rcg_dummy_freq,
@@ -4378,6 +4377,7 @@ static struct rcg_clk audio_slimbus_clk = {
 	.md_reg = LCC_SLIMBUS_MD_REG,
 	.root_en_mask = BIT(9),
 	.ns_mask = (BM(31, 24) | BM(6, 0)),
+	.mnd_en_mask = BIT(8),
 	.set_rate = set_rate_mnd,
 	.freq_tbl = clk_tbl_aif_osr,
 	.current_freq = &rcg_dummy_freq,
@@ -5738,11 +5738,6 @@ static void __init msm8960_clock_init(void)
 		pr_err("[K] %s: msm_xo_get(CXO) failed.\n", __func__);
 		BUG();
 	}
-
-	/* Copy gfx2d's frequency table because it's modified by both clocks */
-	gfx2d1_clk.freq_tbl = kmemdup(clk_tbl_gfx2d,
-			sizeof(struct clk_freq_tbl) * ARRAY_SIZE(clk_tbl_gfx2d),
-			GFP_KERNEL);
 
 	/*
 	 * Change the freq tables for and voltage requirements for
